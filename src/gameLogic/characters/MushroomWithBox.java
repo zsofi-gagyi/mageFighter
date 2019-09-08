@@ -1,8 +1,6 @@
-package game.characters;
+package gameLogic.characters;
 
-import game.Levels.Level;
-import game.Game;
-import inputOutput.PositionedImage;
+import inputOutput.ImageDrawer;
 
 import java.awt.*;
 
@@ -53,13 +51,13 @@ public class MushroomWithBox {
   }
 
   public static void drawMushroom(MushroomWithBox mushroomWithBox, Graphics graphics) {
-    PositionedImage mushroomBoxDraw = new PositionedImage(mushroomWithBox.box,
+    ImageDrawer mushroomBoxDraw = new ImageDrawer(mushroomWithBox.box,
                                                      mushroomWithBox.xCoordinate * 72,
                                                      mushroomWithBox.yCoordinate * 72);
     mushroomBoxDraw.draw(graphics);
 
     if (mushroomWithBox.status.equals("activated")) {
-        PositionedImage mushroomDrawn = new PositionedImage(mushroomWithBox.mushroom,
+        ImageDrawer mushroomDrawn = new ImageDrawer(mushroomWithBox.mushroom,
                                                        mushroomWithBox.xCoordinate * 72,
                                                       (mushroomWithBox.yCoordinate - 1) * 72);
         mushroomDrawn.draw(graphics);

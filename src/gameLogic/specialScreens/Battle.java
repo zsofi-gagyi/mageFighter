@@ -1,49 +1,52 @@
-package game.specialScreens;
+package gameLogic.specialScreens;
 
-import game.characters.Hero;
-import game.characters.abstractCategories.Enemy;
-import inputOutput.PositionedImage;
+import gameLogic.characters.Hero;
+import gameLogic.characters.abstractCategories.Enemy;
+import inputOutput.ImageDrawer;
 
 import java.awt.*;
 
 public class Battle {
-  public boolean hasJustBegan;
-  public boolean isHerosTurn;
-  public boolean isNotOver;
+  public enum BattleState {willBeginWithHero, willBeginWithEnemy, herosTurn, enemysTurn, over}
 
-  public Battle(boolean isHerosTurn) {
-    this.hasJustBegan = true;
-    this.isHerosTurn = isHerosTurn;
-    this.isNotOver = true;
+  public BattleState battleState;
+
+  public Battle(boolean isHerosTurn) { //TODO store battle participants in fields
+    if (isHerosTurn){
+      this.battleState = BattleState.willBeginWithHero;
+    } else {
+      this.battleState = BattleState.willBeginWithEnemy;
+    }
   }
 
-  public void drawBattle(Hero hero, Enemy enemy, Graphics graphics) {
+  public static void drawBattle(Battle battle, Hero hero, Enemy enemy, Graphics graphics) {
     String battleStatus;
-    String secondBattleStatus = "";
+    String secondBattleStatus;
 
-    if (hasJustBegan) {
-      drawFirstImage(enemy, graphics);
-      battleStatus =       "       A battle begins! Press 'space'      ";
-      secondBattleStatus = "      to advance and to roll the dice!";
-    } else {
-      if (this.isNotOver) {
-        if (isHerosTurn) {
-          drawHeroAttacking(enemy, graphics);
-          battleStatus = "                      The enemy rolled a " + hero.diceResult + "!"; // TODO refactor this out from "hero"
-          secondBattleStatus = "You attack!";
+    switch (battle.battleState){
+      case willBeginWithHero:
+      case willBeginWithEnemy:
+        drawFirstImage(enemy, graphics);
+        battleStatus =       "       A battle begins! Press 'space'      ";
+        secondBattleStatus = "      to advance and to roll the dice!";
+        break;
 
-        } else {
-          drawEnemyAttacking(enemy, graphics);
-          battleStatus = "You rolled a " + hero.diceResult + "!";
-          secondBattleStatus = "                         The enemy attacks!";
+      case herosTurn:
+        drawHeroAttacking(enemy, graphics);
+        battleStatus = "                      The enemy rolled a " + hero.diceResult + "!"; // TODO refactor this dice roll out from "hero"
+        secondBattleStatus = "You attack!";
+        break;
 
-        }
-      } else {
+      case enemysTurn:
+        drawEnemyAttacking(enemy, graphics);
+        battleStatus = "You rolled a " + hero.diceResult + "!";
+        secondBattleStatus = "                         The enemy attacks!";
+        break;
+
+      default:
         drawLastImage(graphics);
         battleStatus = "                  You won!                    ";
-
-        hero.isFighting = false;
-      }
+        secondBattleStatus = "";
     }
 
     graphics.setFont(new Font(Font.MONOSPACED, Font.BOLD, 26));
@@ -85,7 +88,7 @@ public class Battle {
   }
 
   private static void drawImage(Graphics graphics, String image) {
-    PositionedImage battleHeroAttacking = new PositionedImage(image, 0, 0);
+    ImageDrawer battleHeroAttacking = new ImageDrawer(image, 0, 0);
     battleHeroAttacking.draw(graphics);
   }
 

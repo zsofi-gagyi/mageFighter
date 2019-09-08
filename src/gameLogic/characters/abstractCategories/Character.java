@@ -1,4 +1,4 @@
-package game.characters.abstractCategories;
+package gameLogic.characters.abstractCategories;
 
 public class Character {
   public String name;
@@ -11,6 +11,6 @@ public class Character {
   public int yCoordinate;
 
   public static int d6() {
-    return (int) ((Math.random() * 5) + 1);
+    return (int)(Math.random() * 6) + 1;
   }
 }

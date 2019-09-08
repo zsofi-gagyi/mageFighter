@@ -1,10 +1,7 @@
-package game.Levels;
+package gameLogic.levels;
 
-import game.characters.MushroomWithBox;
-import game.characters.Managers.EnemyManager;
-import game.Levels.helperClasses.RandomFloorPlan;
-import game.Game;
-import inputOutput.PositionedImage;
+import gameLogic.levels.helperClasses.RandomFloorPlan;
+import inputOutput.ImageDrawer;
 
 import java.awt.*;
 
@@ -59,7 +56,7 @@ public class Level {
   public static void drawLevel(Level level, Graphics graphics) {
     for (int i = 0; i < 10; i++) {
       for (int j = 0; j < 10; j++) {
-        PositionedImage image = new PositionedImage(level.tiles[i][j], i * 72, j * 72);
+        ImageDrawer image = new ImageDrawer(level.tiles[i][j], i * 72, j * 72);
         image.draw(graphics);
       }
     }

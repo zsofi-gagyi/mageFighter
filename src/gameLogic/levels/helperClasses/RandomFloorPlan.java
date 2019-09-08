@@ -1,4 +1,4 @@
-package game.Levels.helperClasses;
+package gameLogic.levels.helperClasses;
 import generalHelper.Direction;
 
 import java.util.ArrayList;

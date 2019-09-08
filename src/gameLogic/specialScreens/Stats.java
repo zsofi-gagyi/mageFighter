@@ -1,20 +1,20 @@
-package game.specialScreens;
+package gameLogic.specialScreens;
 
-import game.Game;
-import game.characters.Hero;
-import game.characters.abstractCategories.Character;
-import game.characters.abstractCategories.Enemy;
+import gameLogic.Game;
+import gameLogic.characters.Hero;
+import gameLogic.characters.abstractCategories.Character;
+import gameLogic.characters.abstractCategories.Enemy;
 
 import java.awt.*;
 
 public class Stats {
 
-  public static void drawStats(int level, Hero hero, Enemy enemy, Graphics graphics) {
+  public static void drawStats(Game.GameState state, int level, Hero hero, Enemy enemy, Graphics graphics) {
     graphics.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 21));
 
     drawHeroStats(level, hero, graphics);
 
-    if (hero.isFighting) {
+    if (state.equals(Game.GameState.battle)) {
       drawEnemyStats(enemy, graphics);
     }
   }

@@ -1,14 +1,13 @@
-package game.characters;
+package gameLogic.characters;
 
-import game.characters.abstractCategories.Character;
-import game.Levels.Level;
-import game.Game;
-import inputOutput.PositionedImage;
+import gameLogic.characters.abstractCategories.Character;
+import gameLogic.Game;
+import gameLogic.specialScreens.Battle;
+import inputOutput.ImageDrawer;
 
 import java.awt.*;
 
 public class Hero extends Character {
-  public boolean isFighting;
   public int diceResult = 0;
 
   public Hero() {
@@ -17,7 +16,6 @@ public class Hero extends Character {
     super.healthPoint = 36;
     super.defendPoint = 12;
     super.strikePoint = 12;
-    isFighting = false;
 
     super.maxHealth = super.healthPoint;
     this.xCoordinate = 0;
@@ -25,7 +23,7 @@ public class Hero extends Character {
   }
 
   public static void drawHero(Hero hero, Graphics graphics) {
-    PositionedImage heroDrawn = new PositionedImage(hero.appearance,
+    ImageDrawer heroDrawn = new ImageDrawer(hero.appearance,
       hero.xCoordinate * 72, hero.yCoordinate * 72);
     heroDrawn.draw(graphics);
   }
@@ -33,14 +31,15 @@ public class Hero extends Character {
   public void attack(Game currentGame) {
     fight(this, currentGame.enemyManager.currentlyFighting);
 
-    currentGame.battle.isHerosTurn = false;
+    currentGame.battle.battleState = Battle.BattleState.enemysTurn;
 
     if (currentGame.enemyManager.currentlyFighting.healthPoint <= 0) {
-      currentGame.battle.isNotOver = false;
+      currentGame.gameState = Game.GameState.board;
+      currentGame.battle.battleState = Battle.BattleState.over;
       currentGame.hero.getPointsAfterBattle();
 
       if (currentGame.enemyManager.allRelevantDead()){
-        currentGame.isShowingStatsBetweenLevels = true;
+        currentGame.gameState = Game.GameState.textScreen;
       }
     }
   }
@@ -48,10 +47,10 @@ public class Hero extends Character {
   public void getAttacked(Game currentGame) {
     fight(currentGame.enemyManager.currentlyFighting, this);
 
-    currentGame.battle.isHerosTurn = true;
+    currentGame.battle.battleState = Battle.BattleState.herosTurn;
 
     if (this.healthPoint <= 0) {
-      currentGame.isOver = true;
+      currentGame.gameState = Game.GameState.over;
     }
   }
 

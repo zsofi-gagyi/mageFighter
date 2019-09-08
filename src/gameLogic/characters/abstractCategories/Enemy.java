@@ -1,11 +1,10 @@
-package game.characters.abstractCategories;
+package gameLogic.characters.abstractCategories;
 
-import game.characters.Hero;
-import game.characters.Managers.EnemyManager;
+import gameLogic.characters.Hero;
 import generalHelper.Direction;
-import game.specialScreens.Battle;
-import game.Game;
-import inputOutput.PositionedImage;
+import gameLogic.specialScreens.Battle;
+import gameLogic.Game;
+import inputOutput.ImageDrawer;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -65,13 +64,13 @@ public class Enemy extends Character {
     return enemyLevel;
   }
 
-  public void moveIfSpeedAllows(Game game, Hero hero, EnemyManager enemyManager, Battle battle, char[][] floorPlanMatrix) {
+  public void moveIfSpeedAllows(Game game) {
 
     if (this.slowness < 2) {
-      this.move(game, hero, enemyManager, battle, floorPlanMatrix);
+      this.move(game);
 
     } else if (this.untilItsTurnToMove == 0) {
-      this.move(game, hero, enemyManager, battle, floorPlanMatrix);
+      this.move(game);
       this.untilItsTurnToMove += this.slowness - 1;
 
     } else {
@@ -81,13 +80,13 @@ public class Enemy extends Character {
   }
 
   public static void drawEnemy(Enemy currentEnemy, Graphics graphics) {
-    PositionedImage enemyDraw = new PositionedImage(currentEnemy.appearance,
+    ImageDrawer enemyDraw = new ImageDrawer(currentEnemy.appearance,
       currentEnemy.xCoordinate * 72, currentEnemy.yCoordinate * 72);
 
     enemyDraw.draw(graphics);
   }
 
-  private void move(Game game, Hero hero, EnemyManager enemyManager, Battle battle, char[][] floorPlanMatrix) {
+  private void move(Game game) {
     boolean canMove = true;
 
     if (Math.random() < this.chanceOfChangingDirections) {
@@ -96,8 +95,9 @@ public class Enemy extends Character {
       this.direction = directionS[(int) (Math.random() * 4)];
     }
 
-    if (!(this.canMoveInThisDirection(enemyManager.monsterList, floorPlanMatrix, this.direction))) {
-      ArrayList<Direction> possibleDirections = this.checkDirections(enemyManager.monsterList, floorPlanMatrix);
+    if (!(this.canMoveInThisDirection(game.enemyManager.monsterList, game.level.floorPlanMatrix, this.direction))) {
+      ArrayList<Direction> possibleDirections = this.checkDirections(game.enemyManager.monsterList,
+                                                                     game.level.floorPlanMatrix);
 
       if (possibleDirections.isEmpty()) {
         canMove = false;
@@ -108,10 +108,10 @@ public class Enemy extends Character {
 
     if (canMove) {
       this.makeAStep(this.direction);
-      if (this.steppedOnHero(hero)) {
-        hero.isFighting = true;
-        enemyManager.currentlyFighting = this;
+      if (this.steppedOnHero(game.hero)) {
+        game.enemyManager.currentlyFighting = this;
         game.battle = new Battle(false);
+        game.gameState = Game.GameState.battle;
       }
     }
   }

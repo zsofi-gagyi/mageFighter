@@ -1,6 +1,6 @@
 package inputOutput;
 
-import game.Game;
+import gameLogic.Game;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,10 +8,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Board extends JComponent implements KeyListener {
-  Game thisGame;
+  Game game;
 
   public Board() {
-    thisGame = new Game();
+    this.game = new Game();
     setPreferredSize(new Dimension(720, 820));
     setVisible(true);
   }
@@ -29,7 +29,7 @@ public class Board extends JComponent implements KeyListener {
   @Override
   public void paint(Graphics graphics) {
     super.paint(graphics);
-    thisGame.drawEverything(graphics);
+    game.drawEverything(graphics);
   }
 
   @Override
@@ -40,24 +40,26 @@ public class Board extends JComponent implements KeyListener {
 
   @Override
   public void keyReleased(KeyEvent e) {
+    int input = e.getKeyCode();
 
-    if (e.getKeyCode() == KeyEvent.VK_UP) {
-      ReactionToKeys.reactToKeys("up", thisGame);
-
-    } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-      ReactionToKeys.reactToKeys("down", thisGame);
-
+    if (input == KeyEvent.VK_UP) {
+      InputProcesser.reactToKeys("up", this.game);
     }
-    if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-      ReactionToKeys.reactToKeys("right", thisGame);
 
-    } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-      ReactionToKeys.reactToKeys("left", thisGame);
-
+    if (input == KeyEvent.VK_DOWN) {
+      InputProcesser.reactToKeys("down", this.game);
     }
-    if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-      ReactionToKeys.reactToKeys("space", thisGame);
 
+    if (input == KeyEvent.VK_RIGHT) {
+      InputProcesser.reactToKeys("right", this.game);
+    }
+
+    if (input == KeyEvent.VK_LEFT) {
+      InputProcesser.reactToKeys("left", this.game);
+    }
+
+    if (input == KeyEvent.VK_SPACE) {
+      InputProcesser.reactToKeys("space", this.game);
     }
 
     repaint();

@@ -1,16 +1,16 @@
-package game.characters.Managers;
+package gameLogic.characters.managers;
 
-import game.characters.Hero;
-import game.characters.Mage;
-import game.characters.Robot;
-import game.characters.abstractCategories.Enemy;
-import game.specialScreens.Battle;
-import game.Game;
+import gameLogic.characters.Hero;
+import gameLogic.characters.Mage;
+import gameLogic.characters.Robot;
+import gameLogic.characters.abstractCategories.Enemy;
+import gameLogic.specialScreens.Battle;
+import gameLogic.Game;
 
 import java.awt.*;
 import java.util.ArrayList;
 
-import static game.characters.abstractCategories.Enemy.drawEnemy;
+import static gameLogic.characters.abstractCategories.Enemy.drawEnemy;
 
 public class EnemyManager {
   public ArrayList<Enemy> monsterList;
@@ -40,23 +40,23 @@ public class EnemyManager {
                                       (enemy.yCoordinate == currentGame.hero.yCoordinate));
 
       if (heroSteppedOnMonster && (enemy.healthPoint > 0)) {
-        currentGame.hero.isFighting = true;
+        currentGame.gameState = Game.GameState.battle;
         currentGame.enemyManager.currentlyFighting = enemy;
         currentGame.battle = new Battle(true);
       }
     }
   }
 
-  public void moveMonsters(Game game, Hero hero, EnemyManager enemyManager, Battle battle, char[][] floorPlanMatrix) {
+  public void moveMonsters(Game game) {
     for (Enemy enemy : this.monsterList) {
       if (enemy.healthPoint > 0) {
-        enemy.moveIfSpeedAllows(game, hero, enemyManager, battle, floorPlanMatrix);
+        enemy.moveIfSpeedAllows(game);
       }
     }
   }
 
-  public void drawMonsters(Graphics graphics) {
-    for (Enemy enemy : this.monsterList) {
+  public static void drawMonsters(ArrayList<Enemy> enemies, Graphics graphics) {
+    for (Enemy enemy : enemies) {
       if (enemy.healthPoint > 0) {
         drawEnemy(enemy, graphics);
       }

@@ -1,7 +1,6 @@
-package game.characters;
+package gameLogic.characters;
 
-import game.characters.abstractCategories.Enemy;
-import game.Game;
+import gameLogic.characters.abstractCategories.Enemy;
 
 import java.awt.*;
 import java.util.ArrayList;

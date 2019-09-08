@@ -1,4 +1,4 @@
-package game.specialScreens;
+package gameLogic.specialScreens;
 
 import java.awt.*;
 

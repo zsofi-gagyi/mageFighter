@@ -6,12 +6,12 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class PositionedImage {
+public class ImageDrawer {
 
   BufferedImage image;
   int posX, posY;
 
-  public PositionedImage(String filename, int posX, int posY) {
+  public ImageDrawer(String filename, int posX, int posY) {
     this.posX = posX;
     this.posY = posY;
     try {
