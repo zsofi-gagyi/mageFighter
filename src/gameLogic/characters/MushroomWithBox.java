@@ -46,6 +46,7 @@ public class MushroomWithBox {
           hero.yCoordinate == mushroomWithBox.yCoordinate - 1) {
 
         hero.healthPoint += 10;
+        hero.maxHealth = Math.max(hero.maxHealth, hero.healthPoint);
         mushroomWithBox.status = "spent";
       }
   }
