@@ -20,7 +20,7 @@
 ---
 
 <p>
-    This is a study project for practicing basic object-oriented problemsolving, and for understanding from experience the kind of problems an imperfect solution can cause downstream. 
+    This is a study project for practicing basic object-oriented problemsolving, and for understanding from experience the kind of problems a naive solution can cause downstream. 
 </p>
 
 ---
