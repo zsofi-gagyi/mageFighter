@@ -7,7 +7,8 @@
 
 <h3>MageFighter</h3>
 
-<p>A 2D multi-level single-screen RPG with enemies and randomly generated levels. Downloadable as an 
+<p>A 2D multi-level single-screen RPG with enemies, fights based on dice rolls and randomly 
+generated levels. Downloadable as an 
     <a href="https://github.com/zsofi-gagyi/mageFighter/blob/master/screenshots/screenshot.png">
         executable
     </a>file.  
