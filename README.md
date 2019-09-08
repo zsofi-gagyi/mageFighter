@@ -10,12 +10,6 @@
 <p>
     A 2D multi-level single-screen game with enemies, fights based on dice rolls and randomly generated levels. 
 </p>
-<p>
-    Downloadable as an 
-    <a href="https://github.com/zsofi-gagyi/mageFighter/blob/master/screenshots/screenshot.png">
-        executable
-    </a>file.  
-</p>
 
 ---
 
