@@ -69,12 +69,8 @@ public class InputProcesser { // as in, this processes the input [key presses]
           }
 
           currentGame.hero.appearance = direction.heroAppearance;
-          permittedToMove = !wouldRunIntoThings(direction, currentGame.hero, currentGame.level);
+          currentGame.hero.moveIfPermitted(direction, currentGame);
 
-          if (permittedToMove) {
-            currentGame.hero.xCoordinate += direction.xModifier;
-            currentGame.hero.yCoordinate += direction.yModifier;
-          }
         }
     }
 
@@ -87,25 +83,5 @@ public class InputProcesser { // as in, this processes the input [key presses]
         currentGame.enemyManager.moveMonsters(currentGame);
       }
     }
-  }
-
-  private static boolean wouldRunIntoThings(Direction direction, Hero hero, Level level) {
-
-    int xCoordonate = direction.xModifier + hero.xCoordinate;
-    int yCoordonate = direction.yModifier + hero.yCoordinate;
-
-    if (wouldLeaveTheBoard (xCoordonate, yCoordonate)){
-      return true;
-    }
-
-    return wouldRunIntoWall(level, xCoordonate, yCoordonate);
-  }
-
-  private static boolean wouldRunIntoWall(Level level, int xCoordonate, int yCoordonate) {
-    return level.tiles[xCoordonate][yCoordonate].equals(level.currentWall);
-  }
-
-  private static boolean wouldLeaveTheBoard (int xCoordonate, int yCoordonate){
-    return (xCoordonate > 9 || xCoordonate < 0 || yCoordonate > 9 || yCoordonate < 0);
   }
 }

@@ -2,7 +2,9 @@ package gameLogic.characters;
 
 import gameLogic.characters.abstractCategories.Character;
 import gameLogic.Game;
+import gameLogic.levels.Level;
 import gameLogic.specialScreens.Battle;
+import generalHelper.Direction;
 import inputOutput.ImageDrawer;
 
 import java.awt.*;
@@ -23,10 +25,42 @@ public class Hero extends Character {
   }
 
   public static void drawHero(Hero hero, Graphics graphics) {
-    ImageDrawer heroDrawn = new ImageDrawer(hero.appearance,
-      hero.xCoordinate * 72, hero.yCoordinate * 72);
+    ImageDrawer heroDrawn = new ImageDrawer(hero.appearance,hero.xCoordinate * 72, hero.yCoordinate * 72);
     heroDrawn.draw(graphics);
   }
+
+  //-------------------------------------------------------------MOVEMENT
+
+  public void moveIfPermitted(Direction direction, Game game){
+    boolean permittedToMove = !wouldRunIntoThings(direction, game.level);
+
+    if (permittedToMove) {
+      this.xCoordinate += direction.xModifier;
+      this.yCoordinate += direction.yModifier;
+    }
+  }
+
+  private boolean wouldRunIntoThings(Direction direction, Level level) {
+
+    int xCoordonate = direction.xModifier + this.xCoordinate;
+    int yCoordonate = direction.yModifier + this.yCoordinate;
+
+    if (wouldLeaveTheBoard (xCoordonate, yCoordonate)){
+      return true;
+    }
+
+    return wouldRunIntoWall(level, xCoordonate, yCoordonate);
+  }
+
+  private static boolean wouldRunIntoWall(Level level, int xCoordonate, int yCoordonate) {
+    return level.tiles[xCoordonate][yCoordonate].equals(level.currentWall);
+  }
+
+  private static boolean wouldLeaveTheBoard (int xCoordonate, int yCoordonate){
+    return (xCoordonate > 9 || xCoordonate < 0 || yCoordonate > 9 || yCoordonate < 0);
+  }
+
+  //-------------------------------------------------------------FIGHTING
 
   public void attack(Game currentGame) {
     fight(this, currentGame.enemyManager.currentlyFighting);
@@ -72,6 +106,8 @@ public class Hero extends Character {
     this.maxHealth = Math.max(this.healthPoint, this.maxHealth);
   }
 
+  //-------------------------------------------------------------LEVELING UP
+
   public void getPointsAfterLevel() {
     int healthToBeRegained = this.maxHealth - this.healthPoint;
     if (healthToBeRegained > 0) {
@@ -86,5 +122,4 @@ public class Hero extends Character {
       }
     }
   }
-
 }

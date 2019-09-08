@@ -44,13 +44,11 @@ public class Level {
         //here could come some more non-random levels...
 
       default:
-        RandomFloorPlan thisPlan = new RandomFloorPlan(15 + (int) (Math.random() * 20));
+        RandomFloorPlan thisPlan = new RandomFloorPlan(15 + (int) (Math.random() * 25));
         this.floorPlanMatrix = thisPlan.matrix;
     }
 
     generateFloor(this.floorPlanMatrix);
-
-
   }
 
   public static void drawLevel(Level level, Graphics graphics) {

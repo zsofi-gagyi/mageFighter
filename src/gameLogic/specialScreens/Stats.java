@@ -42,8 +42,9 @@ public class Stats {
   private static String getStatsFor(Character character, int level){
     return character.name +
       " | Level " + (character instanceof Enemy ? ((Enemy) character).enemyLevel + 1 : level + 1) +
-      " | Health: " +  character.healthPoint + " (max: " + character.maxHealth +
-      ") | Defense: " + character.defendPoint +
+      " | Health: " +  character.healthPoint +
+      ((character instanceof  Hero) ? " (max reached: " + character.maxHealth + ")" : "")+
+      " | Defense: " + character.defendPoint +
       " | Strike: " + character.strikePoint;
   }
 }
