@@ -1,11 +1,12 @@
 <div style="display: flex;
     flex-direction: row;">
-    <img src="https://github.com/zsofi-gagyi/mageFighter/blob/master/screenshots/screenshot.png" width="425px"></img> 
-    <img src="https://github.com/zsofi-gagyi/mageFighter/blob/master/screenshots/padding.png" width="20px" height="400px"></img>
-    <img src="https://github.com/zsofi-gagyi/mageFighter/blob/master/screenshots/screenshot2.png" width="425px"></img> 
+    <img src="https://github.com/zsofi-gagyi/mageFighter/blob/master/presentation/screenshot.png" width="425px"></img> 
+    <img src="https://github.com/zsofi-gagyi/mageFighter/blob/master/presentation/padding.png" width="20px" height="400px"></img>
+    <img src="https://github.com/zsofi-gagyi/mageFighter/blob/master/presentation/screenshot2.png" width="425px"></img> 
 </div>
 
 <h2>MageFighter</h2>
+<h3>Download as a .jar <a href="https://github.com/zsofi-gagyi/mageFighter/blob/master/presentation/mageFighter.jar">here!</a></h3>
 
 <p>
     A 2D multi-level single-screen game with enemies, fights based on dice rolls and randomly generated levels. 
