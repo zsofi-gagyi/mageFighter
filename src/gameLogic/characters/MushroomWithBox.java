@@ -8,8 +8,8 @@ public class MushroomWithBox {
   public int xCoordinate;
   public int yCoordinate;
   public String status = "initial";
-  private String box = "img/questionMark.png";
-  private String mushroom = "img/mushroom.png";
+  private String box = "/questionMark.png";
+  private String mushroom = "/mushroom.png";
 
   public MushroomWithBox(char[][] floorPlanMatrix) {
     boolean isOnWall = false;

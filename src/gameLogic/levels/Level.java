@@ -64,9 +64,9 @@ public class Level {
     String tile;
 
     if (isWall) {
-     tile = "img/wall" + (int)(Math.random() * 8) + ".png";
+     tile = "/wall" + (int)(Math.random() * 8) + ".png";
     } else {
-     tile = "img/floor" + (int)(Math.random() * 8) + ".png";
+     tile = "/floor" + (int)(Math.random() * 8) + ".png";
     }
 
     return tile;

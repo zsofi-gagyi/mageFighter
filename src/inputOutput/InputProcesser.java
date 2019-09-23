@@ -1,9 +1,7 @@
 package inputOutput;
 
-import gameLogic.characters.Hero;
 import gameLogic.characters.MushroomWithBox;
 import gameLogic.characters.managers.EnemyManager;
-import gameLogic.levels.Level;
 import gameLogic.specialScreens.Battle;
 import generalHelper.Direction;
 import gameLogic.Game;

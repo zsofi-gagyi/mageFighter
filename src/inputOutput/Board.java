@@ -2,6 +2,7 @@ package inputOutput;
 
 import gameLogic.Game;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -14,6 +15,7 @@ public class Board extends JComponent implements KeyListener {
     this.game = new Game();
     setPreferredSize(new Dimension(720, 820));
     setVisible(true);
+    ImageIO.setUseCache(false);
   }
 
   public static void main(String[] args) {

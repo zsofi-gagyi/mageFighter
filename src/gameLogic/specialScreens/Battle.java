@@ -58,33 +58,33 @@ public class Battle {
   private static void drawFirstImage(Enemy enemy, Graphics graphics) {
     drawGreyBackground(graphics);
 
-    drawImage(graphics, "img/battleHero.png");
+    drawImage(graphics, "/battleHero.png");
 
-    String enemyImage = "img/battle" + trim(enemy.appearance) + ".png";
+    String enemyImage = "/battle" + trim(enemy.appearance) + ".png";
     drawImage(graphics, enemyImage);
   }
 
   private static void drawHeroAttacking(Enemy enemy, Graphics graphics) {
     drawBlackBackground(graphics);
 
-    String enemyImage = "img/battle" + trim(enemy.appearance) + ".png";
+    String enemyImage = "/battle" + trim(enemy.appearance) + ".png";
     drawImage(graphics, enemyImage);
 
-    drawImage(graphics, "img/battleHeroAttacking.png");
+    drawImage(graphics, "/battleHeroAttacking.png");
   }
 
   private static void drawEnemyAttacking(Enemy enemy, Graphics graphics) {
     drawBlackBackground(graphics);
 
-    drawImage(graphics, "img/battleHero.png");
+    drawImage(graphics, "/battleHero.png");
 
-    String enemyImage = "img/battle" + trim(enemy.appearance) + "Attacking.png";
+    String enemyImage = "/battle" + trim(enemy.appearance) + "Attacking.png";
     drawImage(graphics, enemyImage);
   }
 
   private static void drawLastImage(Graphics graphics) {
     drawGreyBackground(graphics);
-    drawImage(graphics, "img/battleHeroLastImage.png");
+    drawImage(graphics, "/battleHeroLastImage.png");
   }
 
   private static void drawImage(Graphics graphics, String image) {
@@ -93,7 +93,7 @@ public class Battle {
   }
 
   private static String trim(String input){
-    input = input.replace("img/", "");
+    input = input.replace("/", "");
     return input.replace(".png", "");
   }
 

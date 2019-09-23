@@ -9,7 +9,7 @@ public class Mage extends Enemy {
 
   public Mage(int level, Hero hero, ArrayList<Enemy> monsterList, char[][] floorPlanMatrix, String name) {
     super(level, hero, monsterList, floorPlanMatrix, name);
-    super.appearance = "img/mage.png";
+    super.appearance = "/mage.png";
     super.statsColor = new Color(200, 200, 200);
 
     super.healthPoint = (super.enemyLevel + 2) * 3;

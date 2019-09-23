@@ -14,7 +14,7 @@ public class Hero extends Character {
 
   public Hero() {
     super.name = "Hero";
-    super.appearance = "img/hero-down.png";
+    super.appearance = "/hero-down.png";
     super.healthPoint = 36;
     super.defendPoint = 12;
     super.strikePoint = 12;
