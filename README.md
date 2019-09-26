@@ -6,7 +6,7 @@
 </div>
 
 <h2>MageFighter</h2>
-<h3>Download as a .jar <a href="https://github.com/zsofi-gagyi/mageFighter/blob/master/presentation/mageFighter.jar">here!</a></h3>
+<h3>Download as a .jar <a href="https://github.com/zsofi-gagyi/mageFighter/blob/master/presentation/mageFighter.jar">here</a></h3>
 
 <p>
     A 2D multi-level single-screen game with enemies, fights based on dice rolls and randomly generated levels. 
@@ -21,7 +21,7 @@
 ---
 
 <p>
-    I have started out with a template that could read a key and could draw an image on the screen - I did not aim to learn building an UI from scratch.
+    I have started out with a template that could read a key and could draw an image on the screen.
 </p>
 <p>
     Graphics from https://opengameart.org/. 
